@@ -74,6 +74,12 @@ Services that should be stopped while `certbot` runs it's own standalone server 
 
 These services will only be stopped the first time a new cert is generated.
 
+#### Deploy hook
+
+    certbot_deploy_hook:
+
+If not empty, the value of this variable will be used as the argument to certbot's --deploy-hook option.
+
 ### Snap Installation
 
 Beginning in December 2020, the Certbot maintainers decided to recommend installing Certbot from Snap rather than maintain scripts like `certbot-auto`.

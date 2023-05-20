@@ -36,12 +36,15 @@ certbot_create_command: >-
   {{ '--webroot-path ' if certbot_create_method == 'webroot'  else '' }}
   {{ cert_item.webroot | default(certbot_webroot) if certbot_create_method == 'webroot' else '' }}
   -d {{ cert_item.domains | join(',') }}
+  {{ '--deploy-hook {}'.format(certbot_deploy_hook) if certbot_deploy_hook else '' }}
   {{ '--pre-hook /etc/letsencrypt/renewal-hooks/pre/stop_services'
     if certbot_create_standalone_stop_services and certbot_create_method == 'standalone'
   else '' }}
   {{ '--post-hook /etc/letsencrypt/renewal-hooks/post/start_services'
     if certbot_create_standalone_stop_services and certbot_create_method == 'standalone'
   else '' }}
+
+certbot_deploy_hook:
 
 certbot_create_standalone_stop_services:
   - nginx
