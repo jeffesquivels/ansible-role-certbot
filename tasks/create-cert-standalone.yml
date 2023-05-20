@@ -14,6 +14,9 @@
   with_items:
     - pre
     - post
+  when:
+    - certbot_create_standalone_stop_services is defined
+    - certbot_create_standalone_stop_services
 
 - name: Create pre hook to stop services.
   template:
